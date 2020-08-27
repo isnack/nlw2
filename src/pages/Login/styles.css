@@ -1,0 +1,41 @@
+#page-login{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+@media(min-width :700px){
+    #page-login{
+        width: 100vw;       
+        
+    } 
+
+    #container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;
+        grid-template-areas: ". form .";
+       
+    }
+
+    main > form{
+        grid-area: form;
+        border: solid 1px ;
+        border-radius: 10px;
+        margin-top: 2rem;
+        padding: 1em;
+    }
+
+    #button-login {
+        width: 100%;
+        background: var(--color-secundary);
+        color: var(--color-button-text);
+        border:0;
+        border-radius: 0.5rem;
+        margin-top:1rem;
+        
+    }
+
+    #button-login:hover{
+        background: var(--color-secundary-dark);
+    }
+}
