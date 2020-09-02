@@ -13,6 +13,8 @@ import api from '../../services/api';
 const TeacherForm = () => {
     const history = useHistory()
     const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [avatar, setAvatar] = useState('')
     const [whatsapp, setWhatsapp] = useState('')
     const [bio, setBio] = useState('')
@@ -35,6 +37,8 @@ const TeacherForm = () => {
         e.preventDefault();
         api.post('classes',{
             name,
+            email,
+            password,
             avatar,
             whatsapp,
             bio,
@@ -74,6 +78,17 @@ const TeacherForm = () => {
                 label="Nome completo"
                 value={name}
                 onChange={(e)=> { setName(e.target.value)} }
+                />
+                 <Input name="email"
+                label="Email"
+                value={email}
+                onChange={(e)=> { setEmail(e.target.value)} }
+                />
+                 <Input name="password"
+                 type="password"
+                label="Senha"
+                value={password}
+                onChange={(e)=> { setPassword(e.target.value)} }
                 />
                 <Input name="avatar"
                  label="Avatar"

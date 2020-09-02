@@ -11,12 +11,14 @@ import api from '../../services/api';
 
 
 const Landing = () =>{
-    const [totalConnections, setTotolConnections] = useState(0)
+    const [totalConnections, setTotalConnections] = useState(0)
 
     useEffect(()=>{
         api.get('connections').then(response =>{
-            const {total} = response.data
-            setTotolConnections(total)
+            
+           const {total} = response.data
+           
+            setTotalConnections(total)
         })
     },[])
     return (
