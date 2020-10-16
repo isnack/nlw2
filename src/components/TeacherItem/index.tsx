@@ -1,5 +1,6 @@
 import  React from 'react';
 import whatsappIcon from "../../assets/images/icons/whatsapp.svg"
+import TeacherSchedules, { schedules } from '../TeacherSchedules'
 import "./styles.css"
 import api from '../../services/api';
 
@@ -10,7 +11,8 @@ export interface Teacher {
     cost:number,
     name :string,
     subject: string,
-    whatsapp:string
+    whatsapp:string,
+    schedules:[schedules]
 }
 
 interface TeacherItemProps{
@@ -37,6 +39,7 @@ const TeacherItem :React.FC<TeacherItemProps> = ({teacher}) =>{
 
         <p>{teacher.bio}</p>
         
+        <div><TeacherSchedules schedules={teacher.schedules}/></div>
         <footer>
             <p>Preço/hora
                 <strong>{teacher.cost}</strong>

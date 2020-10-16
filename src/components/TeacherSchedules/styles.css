@@ -1,0 +1,38 @@
+#main {
+    display:flex;
+    flex-direction: row;
+    padding: 0 0rem;
+}
+.schedulesItens {
+    display:flex;
+    flex-direction: column;
+    width: 16rem;
+    height: 12rem;
+    padding: 1rem;
+    border: solid 1px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-size: 0.1rem;
+    margin-left: 0.5rem;
+}
+
+.day{
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+
+.day >p +p{
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+.scheduleItem{
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.scheduleItem >p +p{
+    font-size: 1.2rem;
+    font-weight: bold;
+}

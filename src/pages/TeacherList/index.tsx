@@ -1,35 +1,89 @@
-import  React, { useState, FormEvent } from 'react';
+import  React, { useState,useEffect ,useRef , FormEvent } from 'react';
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import Input from "../../components/Input"
 import "./styles.css"
 import Select from '../../components/Select';
 import api from '../../services/api';
-
+import ReactPaginate from 'react-paginate';
 
 const TeacherList = () => {
     const [subject, setSubject] = useState('')
     const [weekDay, setWeekDay] = useState('')
     const [time, setTime] = useState('')
     const [teachers, setTeachers] = useState([])
+    const [pageCount, setPageCount] = useState(0)
+    const [page, setPage] = useState(0)
+    const firstUpdate = useRef(true);
 
-    async function searchTeachers(e:FormEvent){
-        e.preventDefault()
+   
+
+    const  searchTeachersPaginate = async () =>{
+       
         try {
          
-            const response = await api.get('classes', {
+            const response = await api.get('classesPaginate', {
                 params:{
                     subject,
-                    week_day: weekDay,
-                    time
+                    week_day:weekDay,
+                    time,
+                    page:page,
+                    quantityRegisters:2
+                    
                 }
             })
-            setTeachers(response.data)
+            setTeachers(response.data.data)   
+            
+            console.log(await response.data)
         } catch (error) {
             alert(error)
         }
        
     }
+
+    const handlePageClick = (data:any) => {
+        let selected = data.selected +1;
+        console.log(selected)
+        setPage(selected)
+      };
+    
+
+     useEffect(() => {
+         if(firstUpdate.current){
+           
+            firstUpdate.current = false;
+            
+         }else{
+
+           searchTeachersPaginate()
+           
+         }
+    }, [page])   
+
+    async function searchTeachers(e:FormEvent){
+        e.preventDefault()
+        try {
+         
+            const response = await api.get('classesPaginate', {
+                params:{
+                    subject,
+                    week_day: weekDay,
+                    time,
+                    page:page,
+                    quantityRegisters:2
+                }
+            })
+            console.log(response.data.pagination)
+            setTeachers(response.data.data)
+            setPageCount(response.data.pagination.lastPage)
+            
+        } catch (error) {
+            alert(error)
+        }
+       
+    }
+
+
 
     return (
         <div id="page-teacher-list" className="container">
@@ -67,7 +121,7 @@ const TeacherList = () => {
                  value={time}
                  onChange={e=>{setTime(e.target.value)}}
                   />                
-               <button type='submit' onClick={searchTeachers}>
+               <button onClick={searchTeachers}>
                    Buscar
                </button>
             </form>
@@ -77,6 +131,26 @@ const TeacherList = () => {
               {teachers.map((teacher:Teacher)=>{
                   return  <TeacherItem key={teacher.id} teacher={teacher} /> 
               })}
+
+       
+     
+            <div>
+            <ReactPaginate
+          previousLabel={'Anterior'}
+          nextLabel={'Próximo'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={0}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+                 
+          activeClassName={'active'}
+          containerClassName={'teacher-paginate'}
+
+        />
+     
+            </div>
                         
           </main>
         </div>

@@ -60,5 +60,11 @@
       max-width: 740px;
       margin: 0 auto;
     }
+
+    .teacher-paginate {
+      display: flex;
+      justify-content: space-evenly;
+      
+    }
     
   }
