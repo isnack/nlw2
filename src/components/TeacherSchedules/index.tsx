@@ -21,8 +21,8 @@ const TeacherSchedule :React.FC<TeacherScheduleProps> = (schedules) =>{
     return(
        <React.Fragment>
            <div id="main">
-           {DaysOfWeek.map(weekDay =>(
-                <div className="schedulesItens">
+           {DaysOfWeek.map((weekDay,index) =>(
+                <div key={index} className="schedulesItens">
                 <div className="day">
                 <p>Dia</p>
                 <p>{weekDay.label}</p>
@@ -38,10 +38,10 @@ const TeacherSchedule :React.FC<TeacherScheduleProps> = (schedules) =>{
            </React.Fragment>
     )
 }
-function getSchedule(arr:TeacherScheduleProps, weedDayValue:any ,nameAttribute:any):number {
-
-    var result  = arr.schedules.find(schedule => schedule.week_day === weedDayValue );
-  
+ function  getSchedule(arr:TeacherScheduleProps, weedDayValue:any ,nameAttribute:any):number {
+      
+    var result  = arr.schedules.find(schedule => schedule.week_day == weedDayValue  );
+    
     return result? result[nameAttribute]: 0 ; // or undefined
   
   }
