@@ -40,7 +40,7 @@ const TeacherSchedule :React.FC<TeacherScheduleProps> = (schedules) =>{
 }
  function  getSchedule(arr:TeacherScheduleProps, weedDayValue:any ,nameAttribute:any):number {
       
-    var result  = arr.schedules.find(schedule => schedule.week_day === weedDayValue  );
+    var result  = arr.schedules.find(schedule => schedule.week_day == weedDayValue  );
     
     return result? result[nameAttribute]: 0 ; // or undefined
   
