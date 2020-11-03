@@ -1,17 +1,18 @@
 import React from 'react';
 import { Route ,RouteProps, Redirect } from 'react-router-dom';
-import { useAuth } from '../contexts/auth';
+import  {useAuthContext}  from '../contexts/auth';
 
 interface PrivateRouteProps extends RouteProps {   
     component: any;    
 }
 
 const  PrivateRoute: React.FC<PrivateRouteProps> = ({ component:Component, ...rest })=> {
-    const { authTokens } = useAuth();
-        console.log(Object.keys(authTokens).length )
-    return (
+    const { isAuthenticated ,loading } =  useAuthContext();
+   
+    return (        
         <Route {...rest} render={(props) => (
-            (Object.keys(authTokens).length !==0  )  ? (
+          
+            (isAuthenticated && !loading  )  ? (
                 <Component {...props} />  
               ) : (
                        

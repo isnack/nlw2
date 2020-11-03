@@ -1,7 +1,6 @@
 import  React, { useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import {useAuth} from "../../contexts/auth"
-import { useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import  {useAuthContext}  from "../../contexts/auth";
 import "./styles.css"
 
 import backIcon from "../../assets/images/icons/back.svg"
@@ -14,17 +13,17 @@ interface PagerHeaderProps {
 }
 
 const PageHeader:React.FC<PagerHeaderProps> = (props) =>{
-    const {unSetAuthTokens, authTokens} = useAuth();
-    const history = useHistory();
+    const {handleLogout ,isAuthenticated} = useAuthContext();
+    
     const handleExit =() =>{      
-        unSetAuthTokens();
-        history.push("/login");
+       handleLogout()
+       
     }
     
     useEffect(() => {
       
        
-      }, [authTokens]); 
+      }, [isAuthenticated]); 
     
     return (
         <header className="page-header">
@@ -33,7 +32,7 @@ const PageHeader:React.FC<PagerHeaderProps> = (props) =>{
                     <img src={backIcon} alt="Voltar" />
                     </Link>
                     <img src={logoImg} alt="Proffy"/>
-                    {Object.keys(authTokens).length !==0  && <img src={exitIcon} alt="Sair" onClick={handleExit}/>}
+                    {isAuthenticated  && <img src={exitIcon} alt="Sair" onClick={handleExit}/>}
                     
                 </div>
                <div className="header-content">

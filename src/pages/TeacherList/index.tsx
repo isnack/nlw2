@@ -16,46 +16,39 @@ const TeacherList = () => {
     const [page, setPage] = useState(0)
     const firstUpdate = useRef(true);
 
-   
-
-    const  searchTeachersPaginate = async () =>{
-       
-        try {
-         
-            const response = await api.get('classesPaginate', {
-                params:{
-                    subject,
-                    week_day:weekDay,
-                    time,
-                    page:page,
-                    quantityRegisters:2
-                    
-                }
-            })
-            setTeachers(response.data.data)   
-            
-            console.log(await response.data)
-        } catch (error) {
-            alert(error)
-        }
-       
-    }
 
     const handlePageClick = (data:any) => {
-        let selected = data.selected +1;
-        console.log(selected)
+        let selected = data.selected +1;       
         setPage(selected)
       };
     
 
-     useEffect(() => {
+     useEffect(() => {   
+
          if(firstUpdate.current){
            
             firstUpdate.current = false;
             
          }else{
 
-           searchTeachersPaginate()
+           (async function  searchTeachersPaginate () {       
+            try {         
+                const response = await api.get('classesPaginate', {
+                    params:{
+                        subject,
+                        week_day:weekDay,
+                        time,
+                        page:page,
+                        quantityRegisters:2
+                        
+                    }
+                })
+                await setTeachers(response.data.data)              
+                console.log(await response.data.data)
+            } catch (error) {
+                alert(error)
+            }       
+        })()       
            
          }
     }, [page])   
@@ -73,8 +66,8 @@ const TeacherList = () => {
                     quantityRegisters:2
                 }
             })
-            console.log(response.data.pagination)
-            setTeachers(response.data.data)
+            console.log(response.data.data)
+           await setTeachers(response.data.data)
             setPageCount(response.data.pagination.lastPage)
             
         } catch (error) {

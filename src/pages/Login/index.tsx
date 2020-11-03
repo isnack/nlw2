@@ -1,21 +1,20 @@
 import  React, { useState, FormEvent } from 'react';
 import Input from '../../components/Input';
 import PageHeader from '../../components/PageHeader';
-import { useAuth } from "../../contexts/auth";
-import api from "../../services/api"
+import { useAuthContext}  from "../../contexts/auth";
 import "./styles.css"
-import { Redirect } from 'react-router-dom';
 
 const Login = () =>{
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthTokens } = useAuth();
+  const { handleLogin  } = useAuthContext();
 
   function handleLoginForm(e:FormEvent) {
-    e.preventDefault()    
-    api.post('/login',{
+    e.preventDefault()
+    
+    handleLogin(email,password)
+   /* api.post('/login',{
         email,
       password
     }).then(result => {
@@ -29,12 +28,12 @@ const Login = () =>{
     }).catch(e => {
        
       setIsError(true);
-    });
+    }); */
   }
 
-  if (isLoggedIn) {
+ /* if (isAuthenticated) {
     return <Redirect to="/" />;
-  }
+  }*/
 
 
     return (
