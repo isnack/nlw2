@@ -109,7 +109,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   **[React Router Dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**-   
 -   **[Axios](https://github.com/axios/axios)**
 -   **[React Paginate](https://github.com/AdeleD/react-paginate)**
--   
 
 > Veja o arquivo  [package.json](https://github.com/isnack/nlw2/blob/master/package.json)
 
