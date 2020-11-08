@@ -43,11 +43,11 @@ Projeto desenvolvido durante a **NLW - Next Level Week** oferecida pela [Rockets
 
 ## 😃 Como executar o projeto
 
-Este projeto é divido em três partes:
-1. Backend (pasta server) 
-2. Frontend (pasta web)
+Este projeto é divido em duas partes:
+1. Backend (https://github.com/isnack/proffy-backend) 
+2. Frontend (https://github.com/isnack/nlw2)
 
-💡Tanto o Frontend quanto o Mobile precisam que o Backend esteja sendo executado para funcionar.
+💡 O Frontend precisa que o Backend esteja sendo executado para funcionar.
 
 ### Pré-requisitos
 
