@@ -4,7 +4,7 @@
 
 
 <h1 align="center">
-    <img alt="NextLevelWeek" title="#NextLevelWeek" src="./src/assets/images/logo@3x.png" /> 
+    <img alt="NextLevelWeek" title="#NextLevelWeek" src="./src/assets/images/logo2.svg" /> 
 </h1>
 
 
